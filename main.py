@@ -30,8 +30,11 @@ def measure_requests(url: str, count: int = 10) -> list[tuple[float, int]]:
     results = []
 
     for _ in range(count):
-        result = measure_single_request(url)
-        results.append(result)
+        try:
+            result = measure_single_request(url)
+            results.append(result)
+        except requests.RequestException as error:
+            print(f'Запрос не запросился: {error}')
 
     return results
 
@@ -46,6 +49,10 @@ def parse_args() -> argparse.Namespace:
 if __name__ == "__main__":
     args = parse_args()
     results = measure_requests(args.url)
+
+    if not results:
+        print('Не удалось выполнить даже одного запроса')
+        exit()
 
     times = [result[0] for result in results]
     sizes = [result[1] for result in results]
