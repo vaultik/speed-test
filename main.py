@@ -1,7 +1,9 @@
+import argparse
 import time
+
 import requests
 
-IMG_URL = 'https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fmoment%2F&ved=0CBYQjRxqFwoTCPieuqu1gpcDFQAAAAAdAAAAABA4&opi=89978449'
+# IMG_URL = 'https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fmoment%2F&ved=0CBYQjRxqFwoTCPieuqu1gpcDFQAAAAAdAAAAABA4&opi=89978449'
 
 
 def measure_single_request(url: str) -> tuple[float, int]:
@@ -34,8 +36,16 @@ def measure_requests(url: str, count: int = 10) -> list[tuple[float, int]]:
     return results
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('url')
+
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    results = measure_requests(IMG_URL)
+    args = parse_args()
+    results = measure_requests(args.url)
 
     times = [result[0] for result in results]
     sizes = [result[1] for result in results]
