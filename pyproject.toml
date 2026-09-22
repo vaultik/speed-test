@@ -1,7 +1,7 @@
 [project]
 name = "speed-test"
 version = "0.1.0"
-description = "Add your description here"
+description = "A small Python script for checking download speed for a given URL"
 readme = "README.md"
 requires-python = ">=3.12,<3.15"
 dependencies = [
