@@ -24,3 +24,4 @@ def measure_single_request(url: str) -> tuple[float, int]:
 if __name__ == "__main__":
     elapsed, downloaded_bytes = measure_single_request('https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fmoment%2F&ved=0CBYQjRxqFwoTCPieuqu1gpcDFQAAAAAdAAAAABA4&opi=89978449')
     print(f'Time: {elapsed:.3f}s, Bytes: {downloaded_bytes}')
+
